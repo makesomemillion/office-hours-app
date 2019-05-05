@@ -1,0 +1,6 @@
+<div style="width: 600px; margin: 0 auto; padding-top: 3rem">
+    <div class="mat-headline">Office Hour Block</div>
+    <ohs-office-hour-list-item *ngIf="block" [officeHour]="block"></ohs-office-hour-list-item>
+    <div class="mat-h3">Scheduled Meetings</div>
+    <ohs-meeting-item *ngFor="let meeting of meetings" [meeting]="meeting"></ohs-meeting-item>
+</div>

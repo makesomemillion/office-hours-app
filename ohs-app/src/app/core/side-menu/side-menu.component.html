@@ -1,0 +1,77 @@
+<div style="width: 280px">
+    <div class="flex-container flex-dir-column margin-left-1 margin-bottom-1">
+        <div class="margin-top-2 margin-bottom-1"
+             style="border-radius: 50%; background-color: #3F51B5; width: 36px; height: 36px; display: flex">
+            <mat-icon class="material-icons-outlined" *ngIf="state?.isInstructor()" style="margin: auto; color: white">
+                verified_user
+            </mat-icon>
+            <mat-icon class="material-icons-outlined" *ngIf="state?.isStudent()" style="margin: auto; color: white">
+                supervised_user_circle
+            </mat-icon>
+        </div>
+        <div class="mat-title margin-bottom-0">
+            {{user?.firstName}} {{user?.lastName}}
+        </div>
+        <div class="mat-body-2" style="opacity: 0.5">
+            {{user?.email}}
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="mat-body-strong margin-left-1 margin-top-1" style="opacity: 0.5">Quick actions</div>
+    <mat-action-list class="margin-bottom-1">
+        <button mat-list-item (click)="createOfficeHour()" *ngIf="state?.isInstructor()">
+            <mat-icon class="material-icons-outlined">create</mat-icon>
+            Create office hour
+        </button>
+        <button mat-list-item (click)="uploadClassList()" *ngIf="state?.isInstructor()">
+            <mat-icon class="material-icons-outlined">cloud_upload</mat-icon>
+            Upload class list
+        </button>
+    </mat-action-list>
+
+    <mat-divider></mat-divider>
+
+    <div class="mat-body-strong margin-left-1 margin-top-1" style="opacity: 0.5">Navigation</div>
+    <mat-action-list class="margin-bottom-1">
+        <button mat-list-item [routerLink]="state?.isInstructor() ? '/instructor' : '/student'">
+            <mat-icon class="material-icons-outlined">dashboard</mat-icon>
+            View dashboard
+        </button>
+        <button mat-list-item [routerLink]="'/instructor/notes'" *ngIf="state?.isInstructor()">
+            <mat-icon class="material-icons-outlined">speaker_notes</mat-icon>
+            Manage notes & comments
+        </button>
+        <button mat-list-item [routerLink]="state?.isInstructor() ? '/instructor/courses' : '/student/courses'">
+            <mat-icon class="material-icons-outlined">school</mat-icon>
+            Manage courses
+        </button>
+        <button mat-list-item [routerLink]="'/instructor/people'" *ngIf="state?.isInstructor()">
+            <mat-icon class="material-icons-outlined">person</mat-icon>
+            Manage people
+        </button>
+        <button mat-list-item [routerLink]="'/student'" *ngIf="state?.isInstructor()">
+            <mat-icon class="material-icons-outlined">supervised_user_circle</mat-icon>
+            Access student interface
+        </button>
+        <button mat-list-item [routerLink]="'/instructor'" *ngIf="state?.isStudent() && auth.isInstructor()">
+            <mat-icon class="material-icons-outlined">verified_user</mat-icon>
+            Access instructor interface
+        </button>
+    </mat-action-list>
+
+    <mat-divider></mat-divider>
+
+    <div class="mat-body-strong margin-left-1 margin-top-1" style="opacity: 0.5">System</div>
+    <mat-action-list class="margin-bottom-1">
+        <button mat-list-item [routerLink]="'/instructor/settings'">
+            <mat-icon class="material-icons-outlined">settings</mat-icon>
+            Settings
+        </button>
+        <button mat-list-item (click)="signOut()">
+            <mat-icon class="material-icons-outlined">exit_to_app</mat-icon>
+            Sign out
+        </button>
+    </mat-action-list>
+</div>

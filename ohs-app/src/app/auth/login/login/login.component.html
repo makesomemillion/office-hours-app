@@ -1,0 +1,32 @@
+<div class="login-container height-100 width-100 flex-container">
+    <mat-card class="align-center-middle">
+        <div class="padding-horizontal-2 flex-container flex-dir-column align-middle">
+            <mat-icon  class="material-icons-outlined" color="primary" [inline]="true" style="font-size: 54px">person_pin</mat-icon>
+            <div class="mat-subheading-2">Please log in to continue</div>
+
+            <form (ngSubmit)="loginUser(loginForm)" [formGroup]="loginForm">
+                <mat-form-field appearance="outline" class="width-100 margin-top-1">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" formControlName="username" required />
+                    <mat-error *ngIf="loginForm.get('username').invalid">{{ getErrorMessage('username') }}</mat-error>
+                    <mat-icon  class="material-icons-outlined" matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="width-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" required />
+                    <mat-icon  class="material-icons-outlined" matSuffix>lock</mat-icon>
+                    <mat-error *ngIf="loginForm.get('password').invalid">{{ getErrorMessage('password') }}</mat-error>
+                </mat-form-field>
+
+                <div class="error-message">{{ errorMessage }}</div>
+
+                <button mat-flat-button type="submit" color="primary" class="margin-bottom-1 width-100">
+                    Login
+                </button>
+            </form>
+
+            <p class="register-button" [routerLink]="['/register']">Register</p>
+        </div>
+    </mat-card>
+</div>

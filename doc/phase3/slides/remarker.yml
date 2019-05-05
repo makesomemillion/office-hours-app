@@ -1,0 +1,13 @@
+port: 6275
+dest: build
+source: slides.md
+title: ''
+assets: ['assets']
+css: ''
+cssFiles: ['slides.css']
+script: ''
+scriptFiles: ['slides.js']
+remarkConfig: {ratio: '16:9', highlightStyle: 'dark', slideNumberFormat: '', navigation: {click: true, scroll: false}}
+# remarkPath: moduleDir + '/vendor/remark.js'
+livereload: true
+livereloadPort: 35729

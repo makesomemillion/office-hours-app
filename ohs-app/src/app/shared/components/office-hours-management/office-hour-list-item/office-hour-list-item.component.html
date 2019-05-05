@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-header class="flex-container flex-dir-row margin-0">
+        <mat-card-title>{{officeHour?.start | date:'fullDate'}}</mat-card-title>
+        <mat-card-subtitle>
+            {{officeHour?.start | date:'shortTime'}}–{{endTime | date:'shortTime'}}
+            ({{officeHour?.duration}} minutes)
+        </mat-card-subtitle>
+        <div class="align-self-top" style="margin-left: auto">
+            <button mat-stroked-button class="margin-right-1" (click)="editBlock(officeHour)">Edit block</button>
+            <button mat-stroked-button color="primary" (click)="viewMeetings(officeHour)">View meetings</button>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="content-container">
+            <p>
+                <b>{{officeHour?.meetingDuration}} minutes per meeting</b>,
+                allowing up to <b>{{meetingCount}} meetings</b>.
+            </p>
+            <p *ngIf="officeHour?.repeating !== 'none'">
+                Repeats {{officeHour?.repeating}} until {{officeHour?.end | date:'fullDate'}}
+            </p>
+        </div>
+    </mat-card-content>
+</mat-card>

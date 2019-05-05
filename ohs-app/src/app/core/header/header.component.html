@@ -1,0 +1,22 @@
+<div class="ohs-header">
+    <mat-toolbar color="primary" class="mat-elevation-z2">
+        <mat-toolbar-row class="align-middle">
+            <button *ngIf="isUserLoggedIn()" mat-icon-button (click)="toggleSidenav()" class="margin-right-1">
+                <mat-icon  class="material-icons-outlined">menu</mat-icon>
+            </button>
+            <mat-icon class="margin-right-1">bookmarks</mat-icon>
+            <span>Book-Me</span>
+            <span id="subheading" class="mat-subheading-2 margin-left-1"><i>Office Hours System</i></span>
+            <span class="flex-child-grow"></span>
+            <button mat-button (click)="goHome()">
+                <mat-icon  class="material-icons-outlined">home</mat-icon>
+                Home
+            </button>
+            <button mat-button *ngIf="isUserLoggedIn()" (click)="logoutUser()">
+                <mat-icon  class="material-icons-outlined">exit_to_app</mat-icon>
+                Sign out
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+

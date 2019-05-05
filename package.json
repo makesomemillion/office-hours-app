@@ -1,0 +1,25 @@
+{
+  "name": "csc302-project",
+  "version": "0.1.0",
+  "scripts": {
+    "client": "cd ohs-app && npm run ng serve",
+    "server-university": "cd servers/server-university && cross-env PORT=3010 npm run server-university-dev",
+    "server-office-hours": "cd servers/server-office-hours && cross-env PORT=3020 npm run server-office-hours-dev",
+    "servers": "concurrently \"npm:server-*\"",
+    "all": "concurrently \"npm:client\" \"npm:servers\" ",
+    "test-api-university": "env-cmd tests/api/.env dredd --config tests/api/dredd-university.yml",
+    "test-api-office-hours": "env-cmd tests/api/.env dredd --config tests/api/dredd-office-hours.yml",
+    "test-api": "npm-run-all test-api-*",
+    "test": "npm-run-all test-api",
+    "test-ng": "cd ohs-app && npm run test",
+    "presentation": "cd doc/phase3/slides && remarker"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "dredd": "^8.0.6",
+    "env-cmd": "^8.0.2",
+    "npm-run-all": "^4.1.5",
+    "remarker": "^1.9.4"
+  }
+}

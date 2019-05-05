@@ -1,0 +1,10 @@
+<div class="courses-container width-100">
+    <div class="column" style="margin: 0 auto;  width: 800px">
+        <div class="mat-h1">Courses</div>
+
+        <mat-card class="padding-vertical-1 padding-horizontal-0">
+            <ohs-course-listing (courseClicked)="router.navigate(['/instructor/courses', $event._id])"></ohs-course-listing>
+        </mat-card>
+
+    </div>
+</div>

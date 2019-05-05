@@ -1,0 +1,30 @@
+@startuml servers
+
+database "server-univeristy" {
+    [Person]
+    [Course]
+    [CourseOffering]
+    [CourseSection]
+}
+
+database "server-office-hours" {
+    [Meeting]
+    [Comment]
+    [Note]
+    [Block]
+}
+
+[CourseOffering] --> [Course]
+[CourseSection] --> [CourseOffering]
+
+[Comment] --> [Meeting]
+[Note] --> [Meeting]
+
+[Block] -right-> [CourseSection]
+[Meeting] --> [CourseSection]
+
+[Meeting] --> [Person]
+[Note] --> [Person]
+[Comment] --> [Person]
+
+@enduml

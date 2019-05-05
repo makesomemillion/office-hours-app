@@ -1,0 +1,36 @@
+@import '~src/ohs-app-theme';
+
+// :host {
+//     display: block;
+//     width: 100%;
+//     height: 100%;
+//     color: mat-contrast($ohs-app-primary, 500);
+//     background: mat-color($ohs-app-primary, 500);
+// }
+
+.register-container {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+    color: mat-contrast($ohs-app-primary, 500);
+    background: mat-color($ohs-app-primary, 500);
+}
+
+.login-button {
+    cursor: pointer;
+    color: gray;
+    transition: all 0.1;
+
+    &:hover {
+        color: mat-contrast($ohs-app-primary, 200);
+    }
+}
+
+mat-card {
+    width: 400px;
+    margin: auto;
+}
+
+mat-form-field {
+}

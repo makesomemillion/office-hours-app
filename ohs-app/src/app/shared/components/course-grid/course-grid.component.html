@@ -1,0 +1,29 @@
+<div class="grid">
+    <mat-card class="grid-item" *ngFor="let section of sections"
+              style="cursor: pointer"
+              (click)="onToggleCourseSelection(section)"
+              [ngClass]="{'not-selected': isNotSelected(section)}">
+        <div class="flex-container flex-dir-row">
+            <div class="flex-container align-center-middle" style="width: 80px;">
+                <mat-icon  class="material-icons-outlined" color="accent">school</mat-icon>
+            </div>
+            <div>
+                <div class="mat-title margin-bottom-0">
+                    {{section.courseData.departmentCode}}{{section.courseData.number}}
+                    <span class="mat-body-strong">
+                        {{section.activity | prettifyActivity}} {{section.number}}
+                    </span>
+                </div>
+                <div class="mat-caption">
+                    {{section.courseData.name}}
+                </div>
+
+                <div class="mat-caption">
+                    {{section.courseOfferingData.semester | prettifySemester}}
+                    {{section.courseOfferingData.year}}
+                    {{section.courseOfferingData.credits | prettifyCredits}}
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,256 @@
+FORMAT: 1A9
+
+# Book-Me Office Hours API
+
+# Group Blocks
+
+## Block Collection [/blocks{?section}]
+
++ Parameters
+    + section (string, optional)
+
+### Get blocks [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + blocks (array[Block], required, fixed-type)
+
+### Add a block [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required, fixed-type)
+
+## Single Block [/blocks/{blockId}]
+
++ Parameters
+    + blockId: {blockId} (string, required)
+
+### Get a block [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required, fixed-type)
+
+### Delete a block [DELETE]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required, fixed-type)
+
+### Update a course [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + block (Block, required, fixed-type)
+
+# Group Meetings
+
+## Meeting Collection [/meetings{?section}]
+
++ Parameters
+    + section (string, optional)
+
+### Get meetings [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + meetings (array[Meeting], required, fixed-type)
+
+### Add a meeting [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required, fixed-type)
+
+## Single Meeting [/meetings/{meetingId}]
+
++ Parameters
+    + meetingId: {meetingId} (string, required)
+
+### Get a meeting [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required, fixed-type)
+
+### Delete a meeting [DELETE]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required, fixed-type)
+
+### Update a meeting [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + meeting (Meeting, required, fixed-type)
+
+# Group Comments
+
+## Comment Collection [/comments{?filter,studentId}]
+
++ Parameters
+    + filter (string, optional)
+    + studentId (string, optional)
+
+### Get comments [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + comments (array[Comment], required, fixed-type)
+
+## Single Comment [/comments/{commentId}]
+
++ Parameters
+    + commentId: {commentId} (string, required)
+
+### Update a comment [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + comment (Comment, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + comment (Comment, required, fixed-type)
+
+### Delete a comment [DELETE]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + comment (Comment, required, fixed-type)
+
+## Comment Collection for Meeting [/meetings/{meetingId}/comments]
+
++ Parameters
+    + meetingId: {meetingId} (string, required)
+
+### Get comments [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + comments (array[Comment], required, fixed-type)
+
+### Add a comment [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + comment (Comment, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + comment (Comment, required, fixed-type)
+
+# Group Notes
+
+## Note Collection [/notes{?filter,studentId}]
+
++ Parameters
+    + filter (string, optional)
+    + studentId (string, optional)
+
+### Get notes [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + notes (array[Note], required, fixed-type)
+
+## Single Note [/notes/{noteId}]
+
++ Parameters
+    + noteId: {noteId} (string, required)
+
+### Update a note [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + note (Note, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + note (Note, required, fixed-type)
+
+### Delete a note [DELETE]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + note (Note, required, fixed-type)
+
+## Note Collection for Meeting [/meetings/{meetingId}/notes]
+
++ Parameters
+    + meetingId: {meetingId} (string, required)
+
+### Get notes [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + notes (array[Note], required, fixed-type)
+
+### Add a note [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + note (Note, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + note (Note, required, fixed-type)
+
+# Data Structures
+
+## Block
++ _id: {blockId} (string)
++ start: 2019-04-05T12:30Z (string, required)
++ duration: 120 (number, required)
++ meetingDuration: 10 (number, required)
++ courseSection: {courseSectionId} (string, required)
++ repeating: weekly (enum[string], required)
+    + Members
+        + none
+        + weekly
+        + biweekly
++ end: 2019-06-02 (string, required)
++ exceptions (array[string], required)
+
+## Meeting
++ _id: {meetingId} (string)
++ start: 2019-04-05T12:40Z (string, required)
++ duration: 10 (number, required)
++ isCancelled: false (boolean, required)
++ teachingStaff (array[string], required)
++ students (array[string], required)
++ courseSection: {courseSectionId} (string, required)
++ comments (array[string])
++ notes (array[string], required)
+
+## Comment
++ _id: {commentId} (string)
++ author: {personId} (string, required)
++ timestamp: 2019-04-05T12:41Z (string)
++ content: Comment text. (string, required)
++ meeting: {meetingId} (string, required)
+
+## Note
++ _id: {noteId} (string)
++ author: {personId} (string, required)
++ timestamp: 2019-04-05T12:41Z (string)
++ content: Note text. (string, required)
++ meeting: {meetingId} (string, required)

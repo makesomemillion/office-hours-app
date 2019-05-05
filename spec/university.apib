@@ -1,0 +1,271 @@
+FORMAT: 1A9
+
+# Book-Me University API
+
+# Group Courses
+
+## Course Collection [/courses{?filter}]
+
++ Parameters
+    + filter (string, optional)
+
+### Get courses [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courses (array[Course], required, fixed-type)
+
+### Add a course [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required, fixed-type)
+
+## Single Course [/courses/{courseId}]
+
++ Parameters
+    + courseId: {courseId} (string, required)
+
+### Get a course [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required, fixed-type)
+
+### Delete a course [DELETE]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required, fixed-type)
+
+### Update a course [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + course (Course, required, fixed-type)
+
+# Group Offerings
+
+## Offering Collection [/courses/{courseId}/offerings]
+
++ Parameters
+    + courseId: {courseId} (string, required)
+
+### Get offerings [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseOfferings (array[Offering], required, fixed-type)
+
+### Add an offering [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required, fixed-type)
+
+## Single Offering [/courses/{courseId}/offerings/{courseOfferingId}]
+
++ Parameters
+    + courseId: {courseId} (string, required)
+    + courseOfferingId: {courseOfferingId} (string, required)
+
+### Get an offering [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required, fixed-type)
+
+### Delete an offering [DELETE]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required, fixed-type)
+
+### Update an offering [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseOffering (Offering, required, fixed-type)
+
+# Group Sections
+
+## Section Collection [/courses/{courseId}/offerings/{courseOfferingId}/sections]
+
++ Parameters
+    + courseId: {courseId} (string, required)
+    + courseOfferingId: {courseOfferingId} (string, required)
+
+### Get sections [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseSections (array[Section], required, fixed-type)
+
+### Add a section [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required, fixed-type)
+
+## Single Section [/courses/{courseId}/offerings/{courseOfferingId}/sections/{courseSectionId}]
+
++ Parameters
+    + courseId: {courseId} (string, required)
+    + courseOfferingId: {courseOfferingId} (string, required)
+    + courseSectionId: {courseSectionId} (string, required)
+
+### Get a section [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required, fixed-type)
+
+### Delete a section [DELETE]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required, fixed-type)
+
+### Update a section [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + courseSection (Section, required, fixed-type)
+
+# Group People
+
+## Person Collection [/people{?filter}]
+
++ Parameters
+    + filter (string, optional)
+
+### Get people [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + people (array[Person], required, fixed-type)
+
+### Add a person [POST]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required)
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required, fixed-type)
+
+## Single Person [/people/{personId}]
+
++ Parameters
+    + personId: {personId} (string, required)
+
+### Get a person [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required, fixed-type)
+
+### Delete a person [DELETE]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required, fixed-type)
+
+### Update a person [PUT]
+
++ Request (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + person (Person, required, fixed-type)
+
+# Data Structures
+
+## Course
++ _id: {courseId} (string)
++ departmentCode: CSC (string, required)
++ number: 302 (string, required)
++ name: Engineering Large Software Systems (string, required)
+
+## Offering
++ _id: {courseOfferingId} (string)
++ course: {courseId} (string, required)
++ year: 2019 (number, required)
++ semester: winter (enum[string], required)
+    + Members
+        + winter
+        + fall
+        + fullYear
+        + summerFirstTerm
+        + summerSecondTerm
+        + fullSummer
++ credits: halfCredit (enum[string], required)
+    + Members
+        + halfCredit
+        + fullCredit
+
+## Section
++ _id: {courseSectionId} (string)
++ courseOffering: {courseOfferingId} (string, required)
++ activity: lecture (enum[string], required)
+    + Members
+        + lecture
+        + tutorial
+        + practical
++ number: 0101 (string, required)
++ instructorsIds (array[string])
++ teachingAssistantsIds (array[string])
++ studentsIds (array[string])
+
+## Person
++ _id: {personId} (string)
++ firstName: Matthew (string, required)
++ lastName: Zaleski (string, required)
++ accessLevel: instructor (enum[string], required)
+    + Members
+        + student
+        + teachingAssistant
+        + instructor

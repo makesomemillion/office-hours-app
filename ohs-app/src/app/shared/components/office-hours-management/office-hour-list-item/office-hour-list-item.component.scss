@@ -1,0 +1,35 @@
+$primary-color: #3f51b5;
+
+:host {
+    padding: 5px;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: 1px $primary-color solid;
+    h4 {
+        color: $primary-color;
+    }
+}
+
+div.mat-card-header-text {
+    margin: 0px;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 16px;
+    p {
+        margin: 0;
+    }
+}
+
+.action-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0rem 2rem 1rem 2rem;
+}

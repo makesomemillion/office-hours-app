@@ -1,0 +1,31 @@
+@startuml overall
+
+database "mongo-db" {
+
+    package "university-models" {
+        [course]
+        [offering]
+        [section]
+        [person]
+    }
+    package "office-hours-models" {
+        [meeting]
+        [block]
+        [comment]
+        [note]
+    }
+}
+
+[offering] -left-> [course]
+[section] --> [offering]
+[section] --> [person]
+
+[meeting] --> [person]
+[meeting] --> [section]
+[comment] --> [person]
+[comment] --> [meeting]
+[note] --> [person]
+[note] --> [meeting]
+[block] --> [section]
+
+@enduml

@@ -1,0 +1,146 @@
+<div class="main-container" style="width: 800px; margin: 24px auto;">
+
+    <div class="margin-left-1 margin-bottom-1 flex-container flex-dir-row align-center">
+        <div class="mat-headline margin-bottom-0">Meeting</div>
+        <button mat-stroked-button class="margin-right-1" style="margin-left: auto;">
+            <mat-icon class="material-icons-outlined">edit</mat-icon>
+            Edit
+        </button>
+        <button mat-stroked-button color="warn" (click)="deleteMeeting()">
+            <mat-icon class="material-icons-outlined">delete</mat-icon>
+            Delete
+        </button>
+    </div>
+
+    <mat-card>
+
+        <div class="mat-body margin-bottom-0">
+            <strong>
+                {{meeting?.start | date:'shortTime'}}
+                –{{datePlusMins(meeting?.start, meeting?.duration) | date:'shortTime'}}
+            </strong>
+            on
+            <strong>
+                {{meeting?.start | date:'longDate'}}
+            </strong>
+        </div>
+
+        <div class="mat-body margin-bottom-1">
+            <strong>
+                {{meeting?.courseData?.departmentCode}}{{meeting?.courseData?.number}}
+                {{meeting?.courseData?.name}}
+            </strong>
+            {{meeting?.courseSectionData?.activity | prettifyActivity}} {{meeting?.courseSectionData?.number}}
+        </div>
+
+        <div class="mat-body">
+            <strong>Students:</strong> {{students}}
+        </div>
+
+        <div class="mat-body">
+            <strong>Teaching staff:</strong> {{teachingStaff}}
+        </div>
+
+    </mat-card>
+
+    <div *ngIf="state.isInstructor()">
+
+        <mat-divider></mat-divider>
+
+        <div class="margin-left-1 margin-bottom-1 margin-top-1 flex-container flex-dir-row align-center">
+            <div class="mat-headline margin-bottom-0">Notes</div>
+            <button mat-stroked-button class="margin-right-1" style="margin-left: auto;" (click)="reloadNotes()">
+                <mat-icon class="material-icons-outlined">refresh</mat-icon>
+                Refresh
+            </button>
+        </div>
+
+        <mat-card class="padding-top-0">
+            <div *ngIf="meeting?.notesData?.length === 0" class="mat-body text-center margin-vertical-1"
+                 style="opacity: 0.5">
+                <div class="padding-vertical-1">There are currently no notes.</div>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngFor="let note of meeting?.notesData" class="margin-vertical-1 margin-horizontal-1">
+                <div class="mat-body-strong margin-bottom-1 padding-top-1 flex-container flex-dir-row align-left align-middle">
+                    <div>
+                        Note posted by {{getAuthor(note).firstName}} {{getAuthor(note).lastName}}
+                        on {{note.timestamp | date}}.
+                    </div>
+                    <button mat-icon-button color="warn" *ngIf="note?.author === auth.getUserInfo().id"
+                            style="margin-left: auto" (click)="deleteNote(note)">
+                        <mat-icon class="material-icons-outlined">delete</mat-icon>
+                    </button>
+                </div>
+                <div class="mat-body margin-bottom-1">
+                    {{note.content}}
+                </div>
+                <mat-divider></mat-divider>
+            </div>
+            <div class="padding-vertical-1">
+                <mat-form-field appearance="outline" class="columns width-100">
+                    <mat-label>Note</mat-label>
+                    <textarea matInput [formControl]="formNote" class="width-100" style="height: 50px">
+                    </textarea>
+                    <mat-hint>Write a note for yourself and the rest of the teaching staff.</mat-hint>
+                </mat-form-field>
+                <mat-card-actions align="end" class="padding-horizontal-2" style="padding: 0 2rem;">
+                    <button mat-raised-button color="accent" style="color: white;" (click)="submitNote()">
+                        <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                        Submit note
+                    </button>
+                </mat-card-actions>
+            </div>
+        </mat-card>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="margin-left-1 margin-bottom-1 margin-top-1 flex-container flex-dir-row align-center">
+        <div class="mat-headline margin-bottom-0">Comments</div>
+        <button mat-stroked-button class="margin-right-1" style="margin-left: auto;" (click)="reloadComments()">
+            <mat-icon class="material-icons-outlined">refresh</mat-icon>
+            Refresh
+        </button>
+    </div>
+
+    <mat-card class="padding-top-0">
+        <div *ngIf="meeting?.commentsData?.length === 0" class="mat-body text-center margin-vertical-1"
+             style="opacity: 0.5">
+            <div class="padding-vertical-1">There are currently no comments.</div>
+            <mat-divider></mat-divider>
+        </div>
+        <div *ngFor="let comment of meeting?.commentsData" class="margin-vertical-1 margin-horizontal-1">
+            <div class="mat-body-strong margin-bottom-1 padding-top-1 flex-container flex-dir-row align-left align-middle">
+                <div>
+                    Comment posted by {{getAuthor(comment).firstName}} {{getAuthor(comment).lastName}}
+                    on {{comment.timestamp | date}}.
+                </div>
+                <button mat-icon-button color="warn" *ngIf="comment?.author === auth.getUserInfo().id"
+                        style="margin-left: auto" (click)="deleteComment(comment)">
+                    <mat-icon class="material-icons-outlined">delete</mat-icon>
+                </button>
+            </div>
+            <div class="mat-body margin-bottom-1">
+                {{comment.content}}
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+        <div class="padding-vertical-1">
+            <mat-form-field appearance="outline" class="columns width-100">
+                <mat-label>Comment</mat-label>
+                <textarea matInput [formControl]="formComment" class="width-100" style="height: 50px">
+                    </textarea>
+                <mat-hint>Write a comment to communicate with others in this meeting.</mat-hint>
+            </mat-form-field>
+            <mat-card-actions align="end" class="padding-horizontal-2" style="padding: 0 2rem;">
+                <button mat-raised-button color="accent" style="color: white;" (click)="submitComment()">
+                    <mat-icon class="material-icons-outlined">add_comment</mat-icon>
+                    Submit comment
+                </button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+
+</div>

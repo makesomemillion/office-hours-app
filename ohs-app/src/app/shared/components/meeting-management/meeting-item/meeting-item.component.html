@@ -1,0 +1,6 @@
+<mat-card style="cursor: pointer;" (click)="onMeetingClicked(meeting._id)">
+    <mat-card-header>
+        <mat-card-title>Meeting at {{meeting?.start | date:'MMMM d, y, h:mm a'}}</mat-card-title>
+        <mat-card-subtitle>{{meeting?.duration}} minutes</mat-card-subtitle>
+    </mat-card-header>
+</mat-card>

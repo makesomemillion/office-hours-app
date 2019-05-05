@@ -1,0 +1,29 @@
+.mat-list-item mat-icon {
+    margin-right: 0.5rem;
+}
+
+$primary-color: #3f51b5;
+
+.selected {
+    background-color: $primary-color;
+    color: white;
+}
+
+.side-menu-container {
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu-container > div {
+    margin: 10px;
+}
+
+mat-toolbar-row {
+    cursor: pointer;
+    transition: all 200ms;
+
+    &:hover {
+        background-color: lighten($primary-color, 20%);
+    }
+}

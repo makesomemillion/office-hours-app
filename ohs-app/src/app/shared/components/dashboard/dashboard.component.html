@@ -1,0 +1,29 @@
+<div class="main-container">
+    <div class="flex-container flex-dir-row align-middle">
+        <div class="mat-headline margin-bottom-0 margin-left-1">Your course sections</div>
+        <button mat-stroked-button style="margin-left: auto" *ngIf="courseSelection?.length > 0"
+                (click)="clearCourses()">
+            <mat-icon  class="material-icons-outlined">clear_all</mat-icon>
+            Clear selection
+        </button>
+    </div>
+    <ohs-course-grid #courseGrid (courseSelection)="courseSelection = $event"></ohs-course-grid>
+    <div class="flex-container flex-dir-row align-middle">
+        <div class="flex-container flex-dir-column margin-bottom-1 margin-left-1 margin-top-2">
+            <div class="mat-headline">Your meetings calendar</div>
+            <div class="mat-subheading-1 margin-bottom-0">Click on an office hour below to book a meeting.</div>
+        </div>
+        <button mat-flat-button style="margin-left: auto" color="accent" (click)="createOfficeHour()"
+                *ngIf="state.isInstructor()">
+            <mat-icon class="material-icons-outlined">add</mat-icon>
+            Create office hour
+        </button>
+    </div>
+    <mat-card style="padding: 0">
+        <ohs-meetings-calendar #calendar [filterSections]="courseSelection"></ohs-meetings-calendar>
+    </mat-card>
+    <!--<ohs-office-hours-manager-->
+    <!--[displayPage]="displayPage"-->
+    <!--[officeHourBlocks]="filtedOHBlocks">-->
+    <!--</ohs-office-hours-manager>-->
+</div>

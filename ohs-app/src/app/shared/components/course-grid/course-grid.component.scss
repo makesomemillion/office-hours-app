@@ -1,0 +1,21 @@
+// Flexbox Grid
+.grid{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &-item{
+        min-width: 250px;
+        max-width: 400px;
+        flex: 1 1 300px;
+        padding-left: 0;
+        padding-right: .5rem;
+        margin: .5rem;
+    }
+}
+
+.not-selected {
+    filter: brightness(80%);
+}

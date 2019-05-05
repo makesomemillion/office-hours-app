@@ -1,0 +1,67 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Cabin);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+
+.remark-slide-container {
+    visibility: hidden;
+    display: initial;
+}
+.remark-visible {
+    visibility: visible;
+}
+
+body {
+    font-family: 'Cabin';
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+.remark-code,
+.remark-inline-code {
+    font-family: 'Fira Code';
+    font-size: 26pt;
+}
+
+* {
+    font-size: 30pt;
+}
+
+a {
+    color: white;
+}
+
+strong {
+    color: #FFC107;
+}
+
+.black-bg {
+    background-color: black;
+    color: white;
+}
+
+.accent-bg {
+    background-color: #3F51B5;
+    color: white;
+}
+
+.accent-bg code {
+    background-color: #3F51B5 !important;
+}
+
+code {
+    text-align: left;
+}
+
+code > .remark-code-line {
+    width: fit-content;
+}
+
+.fullwidth > img {
+    width: 100%;
+}

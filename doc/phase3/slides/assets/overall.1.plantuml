@@ -1,0 +1,29 @@
+@startuml overall
+
+package "client" {
+
+    [instructor]
+
+    [student]
+
+    [ApiService]
+}
+
+[server-university]
+
+[server-office-hours]
+
+database "mongo-db" {
+    [models]
+}
+
+[instructor] --> [ApiService]
+[student] --> [ApiService]
+
+[ApiService] --> [server-university]
+[ApiService] --> [server-office-hours]
+
+[server-university] --> [models]
+[server-office-hours] --> [models]
+
+@enduml

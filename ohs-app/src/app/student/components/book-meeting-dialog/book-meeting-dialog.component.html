@@ -1,0 +1,72 @@
+<div class="mat-title margin-left-1">Book meeting</div>
+<mat-horizontal-stepper [linear]="true">
+    <mat-step label="Pick a slot">
+        <div class="mat-body">
+            Please select a slot to book during the
+            <strong>
+                {{block?.start | date:'shortTime'}}–{{datePlusMinutes(block?.start, block.duration) | date:'shortTime'}}
+            </strong>
+            office hour on <strong>{{block?.start | date:'longDate'}}</strong>
+            for
+            <strong>
+                {{block.courseData[0].departmentCode}}{{block.courseData[0].number}}
+                {{section.activity | prettifyActivity}} {{section.number}}
+            </strong>.
+        </div>
+        <mat-radio-group class="flex-container flex-dir-column margin-top-1" [formControl]="formSelectSlot">
+            <mat-radio-button class="margin-bottom-1" *ngFor="let slot of slots" [value]="slot">
+                <div class="flex-container flex-dir-column">
+                    <span class="mat-subheading-2 margin-bottom-0">
+                        {{slot.start | date:'shortTime'}}–{{slot.end | date:'shortTime'}}
+                    </span>
+                    <span class="mat-body" style="opacity: 0.5;">
+                        {{slot.duration}} minutes
+                    </span>
+                </div>
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-dialog-actions align="end">
+            <button mat-stroked-button class="margin-right-1" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </mat-dialog-actions>
+    </mat-step>
+    <mat-step label="Enter an agenda">
+        <div class="mat-body">
+            Please enter a <strong>planned agenda</strong> for the meeting,
+            along with some questions or other details that you would like to provide.
+        </div>
+        <mat-form-field appearance="outline" class="width-100 margin-top-1">
+            <mat-label>Agenda</mat-label>
+            <textarea matInput style="height: 250px" [formControl]="formComment"></textarea>
+            <mat-hint>Enter an agenda and possibly some questions.</mat-hint>
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+            <button mat-stroked-button class="margin-right-1" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </mat-dialog-actions>
+    </mat-step>
+    <mat-step label="Confirm & book">
+        <div class="mat-body">
+            <div class="margin-bottom-1">
+                <strong>
+                    {{formSelectSlot?.value?.start | date:'shortTime'}}
+                    –{{formSelectSlot?.value?.end | date:'shortTime'}}
+                    meeting
+                </strong>
+                on <strong>{{formSelectSlot?.value?.start | date:'longDate'}}</strong>
+                for
+                <strong>
+                    {{block.courseData[0].departmentCode}}{{block.courseData[0].number}}
+                    {{section.activity | prettifyActivity}} {{section.number}}
+                </strong>.
+            </div>
+            <div style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 4px" class="padding-1">
+                {{formComment?.value}}
+            </div>
+        </div>
+        <mat-dialog-actions align="end">
+            <button mat-stroked-button class="margin-right-1" mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary" (click)="book()">Book meeting</button>
+        </mat-dialog-actions>
+    </mat-step>
+</mat-horizontal-stepper>

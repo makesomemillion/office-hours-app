@@ -1,0 +1,11 @@
+<div class="list-title">
+    <h2>{{displayPage}}</h2>
+</div>
+
+<div>
+    <div style="width: 600px; margin-left: auto; margin-right: auto">
+        <ohs-office-hour-list-item *ngFor="let officeHour of officeHourBlocks" [officeHour]="officeHour"
+                                   class="width-100">
+        </ohs-office-hour-list-item>
+    </div>
+</div>

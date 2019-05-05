@@ -1,0 +1,27 @@
+{
+  "name": "csc302-book-me-server-university",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server-university-tsc": "tsc",
+    "server-university-dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
+    "server-university-prod": "tsc && node ./dist/out-tsc"
+  },
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.15",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "tslint": "^5.14.0",
+    "typegoose": "^5.6.0",
+    "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "@types/mongodb": "^3.1.22",
+    "@types/mongoose": "^5.3.22",
+    "cors": "^2.8.5"
+  }
+}

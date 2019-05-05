@@ -1,0 +1,9 @@
+$primary-color: #3f51b5;
+
+.list-title {
+    text-align: center;
+    padding-top: 0.5rem;
+    h2 {
+        color: $primary-color;
+    }
+}

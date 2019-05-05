@@ -1,0 +1,66 @@
+<mat-dialog-content>
+    <form (ngSubmit)="upload()" [formGroup]="form">
+        <mat-card-title-group class="row">
+            <mat-card-title class="column" >Upload Class List</mat-card-title>
+            <button mat-icon-button type="button" (click)="dialogRef.close()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-card-title-group>
+        
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Course</mat-label>
+                <mat-select required (selectionChange)="onClassChange($event)" formControlName="course">
+                    <mat-option *ngFor="let course of courses" [value]="course._id">
+                        {{course.departmentCode}}{{course.number}} - {{course.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course that this class list is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Offering</mat-label>
+                <mat-select required (selectionChange)="onOfferingChange($event)" formControlName="courseOffering"
+                            [disabled]="offerings == undefined || offerings.length == 0">
+                    <mat-option *ngFor="let offering of offerings" [value]="offering._id">
+                        {{offering.semester | prettifySemester}} in {{offering.year}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course offering that this class list is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Section</mat-label>
+                <mat-select required formControlName="courseSection"
+                            [disabled]="sections == undefined || sections.length == 0">
+                    <mat-option *ngFor="let section of sections" [value]="section._id">
+                        {{section.activity | prettifyActivity}} {{section.number}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course section that this class list is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row upload-container">
+            <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Class List</mat-label>
+                <ngx-mat-file-input formControlName="csvFile" 
+                                    placeholder="CSV File"
+                                    [accept]="'.csv'">
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon> 
+                <mat-hint>Select class list csv</mat-hint>
+            </mat-form-field>
+        </div>
+        
+        <div class="row" style="justify-content: flex-end">
+            <button mat-raised-button color="primary" class="columns small-3" style="margin-right: 15px">
+                Upload
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>

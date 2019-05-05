@@ -1,0 +1,35 @@
+<div matSort>
+
+    <div class="row margin-bottom-1 padding-horizontal-1 align-middle">
+        <mat-form-field appearance="outline" class="small column padding-left-0">
+            <input matInput placeholder="Search people..." (keyup)="applyFilter($event.target.value)">
+            <mat-icon  class="material-icons-outlined" matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button mat-flat-button color="primary" class="column small-3" (click)="createPerson()">New person</button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <table mat-table [dataSource]="dataSource" class="width-100">
+
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
+            <td mat-cell *matCellDef="let person">{{person.firstName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
+            <td mat-cell *matCellDef="let person">{{person.lastName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="accessLevel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Access level</th>
+            <td mat-cell *matCellDef="let person">{{person.accessLevel}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let person; columns: columnsToDisplay" style="cursor: pointer;"
+            (click)="onPersonClicked(person)"></tr>
+
+    </table>
+</div>

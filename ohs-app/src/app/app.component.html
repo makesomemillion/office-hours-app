@@ -1,0 +1,18 @@
+<div class="app-container grid-y">
+    <ohs-header class="cell shrink" [(sidenavOpen)]="sidenavOpened"></ohs-header>
+
+    <div class="body-container grid-y">
+        <mat-sidenav-container class="cell">
+            <mat-sidenav *ngIf="isUserLoggedIn()" mode="side" [opened]="sidenavOpened">
+                <ohs-side-menu></ohs-side-menu>
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+
+    <ohs-footer *ngIf="!isUserLoggedIn()" class="cell shrink"></ohs-footer>
+        
+    </div>
+</div>

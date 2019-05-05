@@ -1,0 +1,36 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <mat-card-title-group class="row">
+            <mat-card-title class="column" *ngIf="section == undefined">Create new section</mat-card-title>
+            <mat-card-title class="column" *ngIf="section != undefined">Edit section</mat-card-title>
+            <button  mat-icon-button type="button" (click)="dialogRef.close()">
+                <mat-icon  class="material-icons-outlined">close</mat-icon>
+            </button>
+        </mat-card-title-group>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Activity</mat-label>
+                <mat-select formControlName="activity">
+                    <mat-option value="lecture">Lecture (LEC)</mat-option>
+                    <mat-option value="practical">Practical (PRA)</mat-option>
+                    <mat-option value="tutorial">Tutorial (TUT)</mat-option>
+                </mat-select>
+                <mat-hint>The activity of this section.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Section number</mat-label>
+                <input matInput formControlName="number">
+                <mat-hint>The four-digit number for this section.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row align-right">
+            <button mat-stroked-button color="warn" class="columns small-3 margin-right-1" *ngIf="section != undefined"
+                    type="button" (click)="deleteSection()">
+                Delete
+            </button>
+            <button mat-raised-button color="primary" class="columns small-3" style="margin-right: 15px">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

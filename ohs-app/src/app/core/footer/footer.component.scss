@@ -1,0 +1,21 @@
+@import "~src/ohs-app-theme";
+
+// :host {
+//     display: block;
+//     height: fit-content;
+//     color: mat-contrast($ohs-app-primary, 500);
+//     background: mat-color($ohs-app-primary, 500);
+// }
+
+.footer-container {
+    height: 100%;
+    padding: 1rem;
+    color: mat-contrast($ohs-app-primary, 500);
+    background: mat-color($ohs-app-primary, 500);
+}
+
+.line {
+    text-align: center;
+    margin: 4px auto;
+    max-width: 500px;
+}

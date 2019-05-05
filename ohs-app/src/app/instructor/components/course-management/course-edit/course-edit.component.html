@@ -1,0 +1,39 @@
+<div>
+    <form (ngSubmit)="save()" [formGroup]="form">
+        <mat-card-title-group class="row">
+            <mat-card-title class="column" *ngIf="course == undefined">Create new course</mat-card-title>
+            <mat-card-title class="column" *ngIf="course != undefined">Edit course</mat-card-title>
+            <button mat-icon-button type="button" (click)="dialogRef.close()">
+                <mat-icon  class="material-icons-outlined">close</mat-icon>
+            </button>
+        </mat-card-title-group>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Department code</mat-label>
+                <input matInput formControlName="departmentCode">
+                <mat-hint>The three-letter department code.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Course number</mat-label>
+                <input matInput formControlName="number">
+                <mat-hint>The three-digit course number.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Course name</mat-label>
+                <input matInput formControlName="name">
+                <mat-hint>The full name of the course.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row align-right">
+            <button mat-stroked-button color="warn" class="columns small-3 margin-right-1" *ngIf="course != undefined"
+                    type="button" (click)="deleteCourse()">
+                Delete
+            </button>
+            <button mat-raised-button color="primary" class="columns small-3" style="margin-right: 15px">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

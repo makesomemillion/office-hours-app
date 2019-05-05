@@ -1,0 +1,60 @@
+@startuml overall
+
+package "client" {
+
+    package "core" {
+        [SideMenuComponent]
+        [ToolbarComponent]
+    }
+
+    package "shared" {
+        [ApiService]
+        [AuthService]
+        [DashboardComponent]
+        [MeetingCalendarComponent]
+    }
+
+    package "instructor" {
+        [CreateBlockComponent]
+        [CreateCourseComponent]
+    }
+
+    package "student" {
+        [CreateMeetingComponent]
+    }
+
+}
+
+[server-university]
+
+[server-office-hours]
+
+database "mongo-db" {
+    [university-models]
+    [office-hours-models]
+}
+
+[ApiService] --> [server-university]
+[ApiService] --> [server-office-hours]
+
+[DashboardComponent] --> [MeetingCalendarComponent]
+[DashboardComponent] --> [ApiService]
+
+[SideMenuComponent] -right-> [AuthService]
+
+[CreateCourseComponent] --> [ApiService]
+[CreateCourseComponent] --> [AuthService]
+
+[CreateMeetingComponent] --> [ApiService]
+[CreateMeetingComponent] --> [AuthService]
+
+[CreateBlockComponent] --> [ApiService]
+[CreateBlockComponent] --> [AuthService]
+
+[AuthService] --> [ApiService]
+
+[server-university] --> [university-models]
+[server-office-hours] --> [university-models]
+[server-office-hours] --> [office-hours-models]
+
+@enduml

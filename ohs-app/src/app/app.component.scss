@@ -1,0 +1,16 @@
+@import '~src/ohs-app-theme';
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+.body-container {
+    height: 100%;
+    margin-top: 64px;
+    overflow: auto;
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+}

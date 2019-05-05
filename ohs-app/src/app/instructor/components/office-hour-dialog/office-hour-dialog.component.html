@@ -1,0 +1,115 @@
+<mat-dialog-content>
+    <form (ngSubmit)="save(form)" [formGroup]="form">
+
+        <mat-card-title-group class="row">
+            <mat-card-title class="column" *ngIf="block == undefined">Create new office hour block</mat-card-title>
+             <mat-card-title class="column" *ngIf="block != undefined">Edit office hour block</mat-card-title>
+            <button mat-icon-button type="button" (click)="dialogRef.close()">
+                <mat-icon class="material-icons-outlined">close</mat-icon>
+            </button>
+        </mat-card-title-group>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Course</mat-label>
+                <mat-select required (selectionChange)="onClassChange($event)" formControlName="course">
+                    <mat-option *ngFor="let course of courses" [value]="course._id">
+                        {{course.departmentCode}}{{course.number}} - {{course.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course that this office hour block is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Offering</mat-label>
+                <mat-select required (selectionChange)="onOfferingChange($event)" formControlName="courseOffering"
+                            [disabled]="offerings == undefined || offerings.length == 0">
+                    <mat-option *ngFor="let offering of offerings" [value]="offering._id">
+                        {{offering.semester | prettifySemester}} in {{offering.year}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course offering that this office hour block is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Sections</mat-label>
+                <mat-select required multiple formControlName="courseSections"
+                            [disabled]="sections == undefined || sections.length == 0">
+                    <mat-option *ngFor="let section of sections" [value]="section._id">
+                        {{section.activity | prettifyActivity}} {{section.number}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint>The course sections that this office hour block is for.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Start date</mat-label>
+                <input required matInput [matDatepicker]="start_date_picker" placeholder="Choose a date"
+                       formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="start_date_picker"></mat-datepicker-toggle>
+                <mat-datepicker #start_date_picker></mat-datepicker>
+                <mat-hint>When this office hour block starts.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Start time</mat-label>
+                <input required matInput [ngxTimepicker]="start_time_picker" formControlName="startTime">
+                <ngx-material-timepicker #start_time_picker>
+                </ngx-material-timepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Block duration</mat-label>
+                <input required matInput type="number" formControlName="duration">
+                <span matSuffix>minutes</span>
+                <mat-hint>The duration of this office hour block.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Meeting duration</mat-label>
+                <input required matInput type="number" formControlName="meetingDuration">
+                <span matSuffix>minutes</span>
+                <mat-hint>Duration of a meeting in this office hour block.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Repeating</mat-label>
+                <mat-select formControlName="repeating">
+                    <mat-option value="none">None</mat-option>
+                    <mat-option value="weekly">Weekly</mat-option>
+                    <mat-option value="biweekly">Biweekly</mat-option>
+                </mat-select>
+                <mat-hint>The repetition interval of this block.</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="end_date_picker" placeholder="Choose a date"
+                       formControlName="end" [disabled]="form.controls['repeating'].value == 'none'">
+                <mat-datepicker-toggle matSuffix [for]="end_date_picker"></mat-datepicker-toggle>
+                <mat-datepicker #end_date_picker></mat-datepicker>
+                <mat-hint>When this block stops repeating.</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row align-right">
+            <button mat-stroked-button color="warn" class="columns small-3 margin-right-1" *ngIf="block != undefined"
+                    type="button" (click)="deleteBlock()">
+                Delete
+            </button>
+            <button mat-raised-button color="primary" type="submit" class="columns small-3" style="margin-right: 15px">
+                Save
+            </button>
+        </div>
+    </form>
+</mat-dialog-content>

@@ -1,0 +1,18 @@
+<div class="side-menu-container">
+    <button mat-raised-button class="book-button" color="primary" (click)="openDialog()">
+        <mat-icon  class="material-icons-outlined">add</mat-icon>
+        <span class="padding-left-1">Book</span>
+    </button>
+
+    <br/>
+    <form [formGroup]="filterForm">
+        <mat-form-field appearance="outline" class="width-100">
+            <mat-select formControlName="filterOption" required>
+                <mat-option value="Upcoming">Upcoming meetings</mat-option>
+                <mat-option value="Past">Past Meetings</mat-option>
+            </mat-select>
+            <mat-label>Filter</mat-label>
+        </mat-form-field>
+    </form>
+
+</div>

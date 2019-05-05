@@ -1,0 +1,57 @@
+@startuml overall
+
+package "client" {
+    [ApiService]
+    [Component1]
+    [Component2]
+    [Component3]
+
+    package "instructor" {
+        [Component4]
+        [Component5]
+        [Component6]
+    }
+
+    package "student" {
+        [Component7]
+        [Component8]
+        [Component9]
+    }
+}
+
+package "server-university" {
+    [EndpointsUniversity]
+    [ModelsUniversity]
+}
+
+package "server-office-hours" {
+    [EndpointsOfficeHours]
+    [ModelsOfficeHours]
+}
+
+database "mongo-db" {
+    [MongoDocuments]
+}
+
+[Component1] --> [Component2]
+[Component6] --> [Component4]
+[Component8] -left-> [Component1]
+[Component5] -left-> [Component3]
+
+[Component6] --> [ApiService]
+[Component1] --> [ApiService]
+[Component3] --> [ApiService]
+[Component5] --> [ApiService]
+[Component9] --> [ApiService]
+
+[ApiService] --> [EndpointsUniversity]
+[ApiService] --> [EndpointsOfficeHours]
+
+[EndpointsUniversity] --> [ModelsUniversity]
+[EndpointsOfficeHours] --> [ModelsOfficeHours]
+[ModelsOfficeHours] -left-> [ModelsUniversity]
+
+[ModelsUniversity] --> [MongoDocuments]
+[ModelsOfficeHours] --> [MongoDocuments]
+
+@enduml

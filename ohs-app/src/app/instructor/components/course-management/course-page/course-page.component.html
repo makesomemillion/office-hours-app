@@ -1,0 +1,17 @@
+<div class="width-100">
+    <div class="column" style="margin: 0 auto;  width: 800px">
+        <div class="row margin-top-2">
+            <div class="mat-h1" style="margin-right: auto;">
+                {{course?.departmentCode}}{{course?.number}} – {{course?.name}}
+            </div>
+            <div>
+                <button mat-stroked-button (click)="editCourse()">Edit course</button>
+            </div>
+        </div>
+        <mat-card class="padding-vertical-1 padding-horizontal-0">
+            <ohs-course-offering-listing [courseId]="courseId"
+                                         (courseOfferingClick)="router.navigate(['/instructor/courses',courseId, 'offerings', $event._id])">
+            </ohs-course-offering-listing>
+        </mat-card>
+    </div>
+</div>

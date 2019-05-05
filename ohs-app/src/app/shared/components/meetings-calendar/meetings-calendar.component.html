@@ -1,0 +1,28 @@
+<kendo-scheduler [events]="events"
+                 [resources]="resources"
+                 style="height: 600px; border-radius: 4px">
+    <ng-template kendoSchedulerEventTemplate let-event="event">
+        <div class="width-100 height-100" style="cursor:pointer;"
+             (click)="eventClick(event.type, event.dataItem.dataItem)">
+            <div *ngIf="event.type === 'meeting'">
+                <div class="mat-body-strong">Meeting</div>
+                <div class="mat-body-1 margin-left-1">{{event.title}}
+                    LEC{{event.dataItem.dataItem.courseSectionData.number}}</div>
+            </div>
+            <div *ngIf="event.type === 'block'">
+                <div class="mat-body-strong">Office Hour</div>
+                <div class="mat-body-1 margin-left-1">{{event.title}} {{event.dataItem.sections}}</div>
+            </div>
+        </div>
+    </ng-template>
+    <kendo-scheduler-work-week-view startTime="00:00">
+    </kendo-scheduler-work-week-view>
+    <kendo-scheduler-day-view>
+    </kendo-scheduler-day-view>
+    <kendo-scheduler-timeline-view>
+    </kendo-scheduler-timeline-view>
+    <kendo-scheduler-agenda-view>
+    </kendo-scheduler-agenda-view>
+    <kendo-scheduler-month-view>
+    </kendo-scheduler-month-view>
+</kendo-scheduler>

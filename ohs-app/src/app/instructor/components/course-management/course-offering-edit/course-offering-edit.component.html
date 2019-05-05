@@ -1,0 +1,51 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <mat-card-title-group class="row">
+            <mat-card-title class="column" *ngIf="offering == undefined">Create new offering</mat-card-title>
+            <mat-card-title class="column" *ngIf="offering != undefined">Edit offering</mat-card-title>
+            <button mat-icon-button type="button" (click)="dialogRef.close()">
+                <mat-icon  class="material-icons-outlined">close</mat-icon>
+            </button>
+        </mat-card-title-group>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>School year</mat-label>
+                <input matInput formControlName="year">
+                <mat-hint>The calendar year at the beginning of the school year.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Semester</mat-label>
+                <mat-select formControlName="semester">
+                    <mat-option value="fall">Fall</mat-option>
+                    <mat-option value="winter">Winter</mat-option>
+                    <mat-option value="fullYear">Full year</mat-option>
+                    <mat-option value="summerFirstTerm">Summer – first term</mat-option>
+                    <mat-option value="summerSecondTerm">Summer – second term</mat-option>
+                    <mat-option value="fullSummer">Full summer</mat-option>
+                </mat-select>
+                <mat-hint>The semester(s) this course offering is for.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="columns">
+                <mat-label>Credits</mat-label>
+                <mat-select formControlName="credits">
+                    <mat-option value="halfCredit">Half-credit (0.5 credits)</mat-option>
+                    <mat-option value="fullCredit">Full-credit (1.0 credits)</mat-option>
+                </mat-select>
+                <mat-hint>The number of credits earned by completing this course offering.</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="row align-right">
+            <button mat-stroked-button color="warn" class="columns small-3 margin-right-1" *ngIf="offering != undefined"
+                    type="button" (click)="deleteOffering()">
+                Delete
+            </button>
+            <button mat-raised-button color="primary" class="columns small-3" style="margin-right: 15px">
+                Save
+            </button>
+        </div>
+    </form>
+</div>

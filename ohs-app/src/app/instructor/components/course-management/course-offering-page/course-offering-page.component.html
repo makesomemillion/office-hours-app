@@ -1,0 +1,23 @@
+<div class="width-100">
+    <div class="column" style="margin: 0 auto;  width: 800px">
+        <div class="row margin-top-2">
+            <div class="column padding-left-0">
+                <div class="mat-h1 margin-bottom-0">
+                    {{course?.departmentCode}}{{course?.number}} – {{course?.name}}
+                </div>
+                <div class="mat-subheading-2" style="margin-right: auto;">
+                    {{offering?.year}} | {{offering?.semester | prettifySemester}}
+                    | {{offering?.credits | prettifyCredits}}
+                </div>
+            </div>
+            <div>
+                <button mat-stroked-button (click)="editOffering()">Edit offering</button>
+            </div>
+        </div>
+        <mat-card class="padding-vertical-1 padding-horizontal-0">
+            <ohs-course-section-listing [courseId]="courseId" [offeringId]="offering?._id"
+                                        (courseSectionClick)="editSection($event)">
+            </ohs-course-section-listing>
+        </mat-card>
+    </div>
+</div>
